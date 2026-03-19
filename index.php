@@ -1,81 +1,61 @@
-<?php
-echo "<br>Задача 1:<br>";
-function mul($a, $b) {
-    return $a * $b;
-}
+<!DOCTYPE html>
+<html lang=»ru»>
+<head>
+    <meta charset=»UTF-8»>
+    <meta name=»viewport» content=»width=device-width, initial-scale=1.0»>
+    <title>Регистрация</title>
+    <link rel=»stylesheet» href=»style.css»>
+</head>
+<body>
+    <div class=»container»>
+        <h1>Регистрация</h1>
+        
+        <form action=»action.php» method=»POST»>
+            <div class=»form-group»>
+                <label for=»name»><strong>Имя:</strong></label>
+                <input type=»text» id=»name» name=»name» placeholder=»Введите имя» required>
+            </div>
+            
+            <div class=»form-group»>
+                <label for=»email»><strong>Почта:</strong></label>
+                <input type=»email» id=»email» name=»email» placeholder=»name@example.ru» required>
+            </div>
+            
+            <div class=»form-group»>
+                <label for=»password»><strong>Пароль:</strong></label>
+                <input type=»password» id=»password» name=»password» placeholder=»Введите пароль» required>
+            </div>
+            
+            <div class=»form-group»>
+                <label for=»confirm_password»><strong>Подтвердите пароль:</strong></label>
+                <input type=»password» id=»confirm_password» name=»confirm_password» placeholder=»Повторите пароль» required>
+            </div>
+            
+            <div class=»form-group»>
+                <label for=»gender»><strong>Пол:</strong></label>
+                <select id=»gender» name=»gender» required>
+                    <option value=»» disabled selected>Выберите пол</option>
+                    <option value=»male»>Мужской</option>
+                    <option value=»female»>Женский</option>
+                </select>
+            </div>
+            
+            <!—Чекбокс с ссылками 
+            <div class=»checkbox-group»>
+                <input type=»checkbox» id=»terms» name=»terms» required>
+                <label for=»terms» class=»checkbox-label»>
+                    Создавая учетную запись вы соглашаетесь с нашими 
+                    <a href=»/terms» class=»terms-link» target=»_blank»>Условиями</a> 
+                    И 
+                    <a href=»/privacy» class=»terms-link» target=»_blank»>конфиденциальностью</a>
+                </label>
+            </div>
+            
+            <button type=»submit» class=»btn»>Зарегистрироваться</button>
+        </form>
+        
+        <p class=»note»>Создайте учетную запись, на которую ссылаетесь с вашим GitHub и используйте для регистрации.</p>
+    </div>
+</body>
+</html>
 
-function m1($a, $b) {
-    return mul($a, $b);
-}
-
-function m2($a, $b) {
-    $result = function() use ($a, $b) {
-        return mul($a, $b);
-    };
-    return $result();
-}
-
-echo "mul(5, 3) = " . mul(5, 3) . "<br>";
-echo "m1(5, 3) = " . m1(5, 3) . "<br>";
-echo "m2(5, 3) = " . m2(5, 3) . "<br>";
-
-echo "<br> Задача 2: <br>";
-function operation($m, $n, $o) {
-    if (is_callable($o)) {
-        return $o($m, $n);
-    }
-    return "Ошибка: третий аргумент должен быть функцией";
-}
-
-$sum = fn($a, $b) => $a + $b;
-$product = fn($a, $b) => $a * $b;
-
-echo "Сумма: " . operation(10, 5, $sum) . "<br>";
-echo "Произведение: " . operation(10, 5, $product) . "<br>";
-
-echo "<br> Задача 3: <br>";
-function array_map_custom($fn, $array) {
-    $result = [];
-    foreach ($array as $item) {
-        $result[] = $fn($item);
-    }
-    return $result;
-}
-
-$numbers = [1, 2, 3, 4, 5];
-$square = fn($x) => $x * $x;
-print_r(array_map_custom($square, $numbers));
-
-echo "<br> Задача 4:<br>";
-$password = "mySecret123";
-echo "Пароль '" . $password . "': ";
-if (strlen($password) > 5 && strlen($password) < 10) {
-    echo "Пароль подходит <br>";
-} else {
-    echo "Нужно придумать другой пароль <br>";
-}
-
-echo "<br> Задача 5: <br>";
-$url = "https://example.com";
-echo "URL '" . $url . "': ";
-echo (strpos($url, 'http://') === 0 || strpos($url, 'https://') === 0) ? 'да' : 'нет';
-echo "<br>";
-
-echo "<br> Задача 6: Проверка .png или .jpg <br>";
-$file = "image.jpg";
-echo "Файл '" . $file . "': ";
-echo (substr($file, -4) === '.png' || substr($file, -4) === '.jpg') ? 'да' : 'нет';
-echo "<br>";
-
-echo "<br> Задача 7: Замена точек на дефисы <br>";
-$date = '16.04.2021';
-echo "Было: $date, стало: " . str_replace('.', '-', $date) . "<br>";
-
-echo "<br> Задача 8: explode()<br>";
-$str = 'html css php';
-print_r(explode(' ', $str));
-
-echo "<br> Задача 9: implode() <br>";
-$array = ['html', 'css', 'php'];
-echo implode(',', $array) . "<br>";
-?>
