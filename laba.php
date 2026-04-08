@@ -1,81 +1,120 @@
 <?php
-echo "<br>Задача 1:<br>";
-function mul($a, $b) {
-    return $a * $b;
-}
 
-function m1($a, $b) {
-    return mul($a, $b);
-}
 
-function m2($a, $b) {
-    $result = function() use ($a, $b) {
-        return mul($a, $b);
-    };
-    return $result();
-}
+$arr1 = ['a', 'b', 'c', 'd', 'e'];
+$result1 = array_map('strtoupper', $arr1);
+print_r($result1); 
+echo "" . "<br>";
 
-echo "mul(5, 3) = " . mul(5, 3) . "<br>";
-echo "m1(5, 3) = " . m1(5, 3) . "<br>";
-echo "m2(5, 3) = " . m2(5, 3) . "<br>";
+$arr2 = [10, 20, 30, 40, 50];
+$lastIndex = count($arr2) - 1;
+echo "Последний элемент: " . $arr2[$lastIndex] . "". "<br>";
 
-echo "<br> Задача 2: <br>";
-function operation($m, $n, $o) {
-    if (is_callable($o)) {
-        return $o($m, $n);
-    }
-    return "Ошибка: третий аргумент должен быть функцией";
-}
-
-$sum = fn($a, $b) => $a + $b;
-$product = fn($a, $b) => $a * $b;
-
-echo "Сумма: " . operation(10, 5, $sum) . "<br>";
-echo "Произведение: " . operation(10, 5, $product) . "<br>";
-
-echo "<br> Задача 3: <br>";
-function array_map_custom($fn, $array) {
-    $result = [];
-    foreach ($array as $item) {
-        $result[] = $fn($item);
-    }
-    return $result;
-}
-
-$numbers = [1, 2, 3, 4, 5];
-$square = fn($x) => $x * $x;
-print_r(array_map_custom($square, $numbers));
-
-echo "<br> Задача 4:<br>";
-$password = "mySecret123";
-echo "Пароль '" . $password . "': ";
-if (strlen($password) > 5 && strlen($password) < 10) {
-    echo "Пароль подходит <br>";
+$arr3 = [1, 5, 8, 3, 9];
+if (in_array(3, $arr3)) {
+    echo "Элемент со значением 3 найден". "<br>";
 } else {
-    echo "Нужно придумать другой пароль <br>";
+    echo "Элемент со значением 3 не найден". "<br>";
 }
 
-echo "<br> Задача 5: <br>";
-$url = "https://example.com";
-echo "URL '" . $url . "': ";
-echo (strpos($url, 'http://') === 0 || strpos($url, 'https://') === 0) ? 'да' : 'нет';
-echo "<br>";
 
-echo "<br> Задача 6: Проверка .png или .jpg <br>";
-$file = "image.jpg";
-echo "Файл '" . $file . "': ";
-echo (substr($file, -4) === '.png' || substr($file, -4) === '.jpg') ? 'да' : 'нет';
-echo "<br>";
+$arr4a = [1, 2, 3];
+$arr4b = ['a', 'b', 'c'];
+$result4 = array_merge($arr4a, $arr4b);
+print_r($result4); 
 
-echo "<br> Задача 7: Замена точек на дефисы <br>";
-$date = '16.04.2021';
-echo "Было: $date, стало: " . str_replace('.', '-', $date) . "<br>";
+$arr5 = [1, 2, 3, 4, 5];
+$result5 = array_slice($arr5, 1, 3);
+print_r($result5); 
+echo "". "<br>";
 
-echo "<br> Задача 8: explode()<br>";
-$str = 'html css php';
-print_r(explode(' ', $str));
+$arr6 = ['a' => 1, 'b' => 2, 'c' => 3];
+$keys = array_keys($arr6);
+$values = array_values($arr6);
+print_r($keys);   
+echo "". "<br>";
+print_r($values); 
+echo "". "<br>";
 
-echo "<br> Задача 9: implode() <br>";
-$array = ['html', 'css', 'php'];
-echo implode(',', $array) . "<br>";
+$arr7a = ['a', 'b', 'c'];
+$arr7b = [1, 2, 3];
+$result7 = array_combine($arr7a, $arr7b);
+print_r($result7); 
+echo "". "<br>";
+$arr8 = ['a', '-', 'b', '-', 'c', '-', 'd'];
+$position = array_search('-', $arr8);
+echo "Позиция первого элемента '-': " . $position . "". "<br>";
+
+$arr9 = [3 => 'a', 1 => 'c', 2 => 'e', 4 => 'b'];
+echo "Исходный массив: ";
+print_r($arr9);
+echo "". "<br>";
+$sorted1 = $arr9;
+sort($sorted1);
+echo "sort(): ";
+print_r($sorted1);
+echo "". "<br>";
+
+$sorted2 = $arr9;
+asort($sorted2);
+echo "asort(): ";
+print_r($sorted2);
+echo "". "<br>";
+
+$sorted3 = $arr9;
+ksort($sorted3);
+echo "ksort(): ";
+print_r($sorted3);
+echo "". "<br>";
+
+$sorted4 = $arr9;
+rsort($sorted4);
+echo "rsort(): ";
+print_r($sorted4);
+echo "". "<br>";
+
+$sorted5 = $arr9;
+arsort($sorted5);
+echo "arsort(): ". "<br>";
+print_r($sorted5);
+echo "". "<br>";
+
+$sorted6 = $arr9;
+krsort($sorted6);
+echo "krsort(): ";
+print_r($sorted6);
+echo "". "<br>";
+
+$str10 = '1234567890';
+$arr10 = str_split($str10);
+$sum10 = array_sum($arr10);
+echo "Сумма цифр строки '1234567890': " . $sum10 . "". "<br>";
+
+
+$arr11 = array_fill(0, 10, 'x');
+print_r($arr11); 
+echo "". "<br>";
+
+
+$arr12a = [1, 2, 3, 4, 5];
+$arr12b = [3, 4, 5, 6, 7];
+$result12 = array_intersect($arr12a, $arr12b);
+print_r($result12); 
+echo "". "<br>";
+
+$arr12a2 = [1, 2, 3, 4, 5];
+$arr12b2 = [3, 4, 5, 6, 7];
+$merged = array_merge($arr12a2, $arr12b2);
+$countGreaterThan3 = 0;
+foreach ($merged as $value) {
+    if ($value > 3) {
+        $countGreaterThan3++;
+    }
+}
+echo "Количество элементов, которые больше 3 в объединенном массиве: " . $countGreaterThan3 . "". "<br>";
 ?>
+
+
+
+
+
